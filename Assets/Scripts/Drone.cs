@@ -20,14 +20,13 @@ public class Drone : MonoBehaviour
     private float speed = 1f;
     private float randY;
     private bool droneDefeated;
-    private int health = 3;
+    private int health = 1;
     private int startHealth;
     private float droneStart;
 
     private bool timer = false;
     private int count = 0;
     private int limit = 500;
-    private int winGameScore = 5;
 
 
 
@@ -56,8 +55,6 @@ public class Drone : MonoBehaviour
             if (count < limit)
             {
                 if (count==1) GameControl.instance.BirdScores();
-                //player wins the game
-                if (GameControl.instance.GetScore()==winGameScore) GameControl.instance.gameWon = true;
                 count++;
                 if (count == limit)
                 {

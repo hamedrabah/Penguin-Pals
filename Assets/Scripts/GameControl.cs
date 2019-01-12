@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
-    public GameObject gameOverText;
-    //public Text scoreText;
+    public Text scoreText;
+    public Text gameOverText;
     public Text gameOverText2;
     public bool gameOver = false;
     public float scrollSpeed = -1.5f;
@@ -18,16 +18,23 @@ public class GameControl : MonoBehaviour
     public Sprite[] penguinsSaved;
     public bool speedUp = false;
     public bool birdScored = false;
-
+    public Sprite genericPenguin;
+    private float scoreSpotX;
+    private float scoreSpotY;
 
     // Awake is called before the first frame update
     private void Awake()
     {
+
         if (instance==null){
             instance = this;
             //scoreText.text = "Score: 0";
+            scoreText.enabled = false;
+            gameOverText.enabled = false;
+            gameOverText2.enabled = false;
 
         }
+
         else if (instance!=this){
             Destroy(gameObject);
         }
@@ -36,9 +43,10 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     private void Update(){
         //Debug.Log(scrollSpeed);
+
         if (SceneManager.GetActiveScene().name == "game" && birdScored)
         {
-            scrollSpeed -= 0.3f;
+            if (scrollSpeed>-5) scrollSpeed -= 0.02f;
             birdScored = false;
         } 
         if (gameOver==true && Input.GetMouseButtonDown(0)){
@@ -46,7 +54,7 @@ public class GameControl : MonoBehaviour
             SceneManager.LoadScene(3);
         }
 
-        if (gameWon) SceneManager.LoadScene(0);
+        if (gameWon) SceneManager.LoadScene(4);
     }
 
 
@@ -54,12 +62,23 @@ public class GameControl : MonoBehaviour
         if (gameOver) return;
         score++;
         birdScored = true;
-        scorePenguins.sprite = penguinsSaved[score];
-        //scoreText.text = "Score: " + score.ToString(); 
+        if (instance.score <6) {
+            scorePenguins.sprite = penguinsSaved[score];
+            scoreSpotX = scorePenguins.transform.position.x;
+            scoreSpotY= scorePenguins.transform.position.y;
+        } 
+        if (instance.score>5)
+        {
+            scoreText.enabled = true;
+            scorePenguins.sprite = genericPenguin;
+            scoreText.text = instance.score.ToString();
+            scorePenguins.transform.position = new Vector3(scoreSpotX - 0.5f,-4.2f);
+        }
     }
 
     public void BirdDied(){
-        gameOverText.SetActive(true);
+        gameOverText.enabled = true;
+        gameOverText2.enabled = true;
         gameOver = true;
     }
 

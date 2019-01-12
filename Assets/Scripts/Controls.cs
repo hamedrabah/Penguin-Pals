@@ -34,7 +34,7 @@ public class Controls : MonoBehaviour
 
         if (isDead == false)
         {
-            if (GameControl.instance.birdScored) audioData.pitch += 0.05f;
+            if (GameControl.instance!=null && GameControl.instance.birdScored) audioData.pitch += 0.005f;
 
                 if (Input.GetMouseButtonDown(0))
             {

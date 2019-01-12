@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Drone.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameControl.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\RepeatingBackground.cs" />
     <Compile Include="Assets\Scripts\Scenes.cs" />
     <Compile Include="Assets\Scripts\ScrollingObject.cs" />

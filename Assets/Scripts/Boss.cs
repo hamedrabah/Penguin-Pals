@@ -30,26 +30,33 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer++;
-        float randY = Random.Range(-5, 5);
-        spot.position -= new Vector3(speed / 100, randY / 1000);
-        if (spot.position.x < player.position.x) spot.position = new Vector3(startX, 0);
-
-        if (PlayerNear())
+        if (GameControl.instance.gameOver==true)
         {
-            health -= 1;
-            spot.position = new Vector3(startX, 0);
+            timer++;
+            float randY = Random.Range(-5, 5);
+            spot.position -= new Vector3(speed / 100, randY / 1000);
+            if (spot.position.x < player.position.x) spot.position = new Vector3(startX, 0);
+
+            if (PlayerNear())
+            {
+                health -= 1;
+                spot.position = new Vector3(startX, 0);
+            }
+
+            if (timer == 100)
+            {
+                fire.SetActive(true);
+                firePos.position = spot.position;
+
+            }
+            if (timer > 100)
+            {
+                firePos.position -= new Vector3(speed / 20, 0);
+                if (firePos.position.x < player.position.x - 3) timer = 0;
+            }
+
         }
-
-        if (timer == 100)
-        {
-            //timer = 0;
-            fire.SetActive(true);
-            firePos.position = spot.position - new Vector3(speed / 100, 0);
-
-        }
-
-    }
+    } 
 
     private bool PlayerNear()
     {

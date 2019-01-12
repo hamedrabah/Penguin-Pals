@@ -14,6 +14,7 @@ public class ColumnPool : MonoBehaviour
     public float colmax = 3.5f;
     private float spawnX = 10f;
     private int currentCol = 0;
+    public bool isColumn;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class ColumnPool : MonoBehaviour
     void Update()
     {
         timeSinceSpawn += Time.deltaTime;
-        if (GameControl.instance.birdScored)
+        if (isColumn && GameControl.instance.birdScored)
         {
             colmin += 0.2f;
             colmax -= 0.2f;
@@ -39,8 +40,16 @@ public class ColumnPool : MonoBehaviour
             timeSinceSpawn = 0;
             float spawnY= Random.Range(colmin, colmax);
             columns[currentCol].transform.position = new Vector2(spawnX, spawnY);
+            if (isColumn && GameControl.instance.GetScore() > 5) HardMode();
             currentCol++;
             if (currentCol >= columnPoolSize) currentCol = 0;
         }
+    }
+
+    void HardMode()
+    {
+        bool Boolean = (Random.value > 0.02* GameControl.instance.GetScore());
+        columns[currentCol].GetComponent<Rigidbody2D>().isKinematic = Boolean;
+        //if true its easier, more false the moroe hard 
     }
 }
