@@ -16,6 +16,8 @@ public class GameControl : MonoBehaviour
     public bool gameWon = false;
     public SpriteRenderer scorePenguins;
     public Sprite[] penguinsSaved;
+    public bool speedUp = false;
+    public bool birdScored = false;
 
 
     // Awake is called before the first frame update
@@ -33,7 +35,12 @@ public class GameControl : MonoBehaviour
 
     // Update is called once per frame
     private void Update(){
-
+        //Debug.Log(scrollSpeed);
+        if (SceneManager.GetActiveScene().name == "game" && birdScored)
+        {
+            scrollSpeed -= 0.3f;
+            birdScored = false;
+        } 
         if (gameOver==true && Input.GetMouseButtonDown(0)){
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             SceneManager.LoadScene(3);
@@ -46,6 +53,7 @@ public class GameControl : MonoBehaviour
     public void BirdScores(){
         if (gameOver) return;
         score++;
+        birdScored = true;
         scorePenguins.sprite = penguinsSaved[score];
         //scoreText.text = "Score: " + score.ToString(); 
     }

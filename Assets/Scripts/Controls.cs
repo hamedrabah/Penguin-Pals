@@ -31,10 +31,12 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (isDead == false)
         {
+            if (GameControl.instance.birdScored) audioData.pitch += 0.05f;
 
-            if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0))
             {
                 rb2d.isKinematic = false;
                 rb2d.velocity = Vector2.zero;

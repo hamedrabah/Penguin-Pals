@@ -29,7 +29,12 @@ public class ColumnPool : MonoBehaviour
     void Update()
     {
         timeSinceSpawn += Time.deltaTime;
-
+        if (GameControl.instance.birdScored)
+        {
+            colmin += 0.2f;
+            colmax -= 0.2f;
+            spawnX -= 1f;
+        }
         if (GameControl.instance.gameOver==false && timeSinceSpawn>=spawnRate){
             timeSinceSpawn = 0;
             float spawnY= Random.Range(colmin, colmax);
