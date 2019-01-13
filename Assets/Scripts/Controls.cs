@@ -11,6 +11,8 @@ public class Controls : MonoBehaviour
     public AudioClip gameMusic;
     public AudioClip death;
     public AudioClip menuMusic;
+    public Canvas gameOverMenu;
+    public AudioClip victoryMusic;
 
 
     // Start is called before the first frame update
@@ -23,7 +25,7 @@ public class Controls : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
+        gameOverMenu.enabled = false;
         rb2d.AddForce(new Vector2(0, upForce));
     }
 
@@ -31,12 +33,13 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead) gameOverMenu.enabled = true;
 
         if (isDead == false)
         {
             if (GameControl.instance!=null && GameControl.instance.birdScored) audioData.pitch += 0.005f;
 
-                if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 rb2d.isKinematic = false;
                 rb2d.velocity = Vector2.zero;

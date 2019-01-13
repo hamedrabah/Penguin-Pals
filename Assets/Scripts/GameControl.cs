@@ -21,18 +21,18 @@ public class GameControl : MonoBehaviour
     public Sprite genericPenguin;
     private float scoreSpotX;
     private float scoreSpotY;
+    private int highScore;
 
     // Awake is called before the first frame update
     private void Awake()
     {
-
+        highScore = PlayerPrefs.GetInt("highScore");
         if (instance==null){
             instance = this;
             //scoreText.text = "Score: 0";
             scoreText.enabled = false;
             gameOverText.enabled = false;
             gameOverText2.enabled = false;
-
         }
 
         else if (instance!=this){
@@ -43,18 +43,14 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     private void Update(){
         //Debug.Log(scrollSpeed);
-
+        //Leaderboard.instance.highScore = score;
         if (SceneManager.GetActiveScene().name == "game" && birdScored)
         {
             if (scrollSpeed>-5) scrollSpeed -= 0.02f;
             birdScored = false;
         } 
-        if (gameOver==true && Input.GetMouseButtonDown(0)){
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            SceneManager.LoadScene(3);
-        }
 
-        if (gameWon) SceneManager.LoadScene(4);
+        //if (gameWon) SceneManager.LoadScene(4);
     }
 
 
@@ -74,11 +70,14 @@ public class GameControl : MonoBehaviour
             scoreText.text = instance.score.ToString();
             scorePenguins.transform.position = new Vector3(scoreSpotX - 0.5f,-4.2f);
         }
+        if (score > highScore) PlayerPrefs.SetInt("highScore", score);
+
     }
 
     public void BirdDied(){
         gameOverText.enabled = true;
         gameOverText2.enabled = true;
+        gameOverText2.text = "High Score: " + PlayerPrefs.GetInt("highScore");
         gameOver = true;
     }
 

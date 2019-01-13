@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/freeze.unity
     guid: 0e804127789ff46c99c033e2a5828384
+  - enabled: 1
+    path: Assets/Scenes/leaderboard.unity
+    guid: 9f796e35cc3024258a4c4ad2f19e42a3
   m_configObjects: {}

@@ -27,6 +27,11 @@ public class Menu : MonoBehaviour
     {
         //Output this to console when Button1 or Button3 is clicked
         SceneManager.LoadScene(scene);
+    }
 
+    public void TaskOnClick(string name)
+    {
+        //Output this to console when Button1 or Button3 is clicked
+        SceneManager.LoadScene(name);
     }
 }
