@@ -108,9 +108,8 @@ public class Drone : MonoBehaviour
            
         }
 
-        if (GameControl.instance.gameOver == true) enemy.position= new Vector3(droneStart, 0);
+        if (GameControl.instance.gameOver == true) Object.Destroy(drone);
     }
-
     private bool PlayerNear()
     {
         bool xPos;

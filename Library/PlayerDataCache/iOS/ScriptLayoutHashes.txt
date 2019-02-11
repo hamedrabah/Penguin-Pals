@@ -1,6 +1,6 @@
 iOS
 PlayerPath?
-/Users/Hamed/Desktop/testRun
+/Users/Hamed/Desktop/penguinPals
 SceneListBegin?
 Assets/Scenes/menu.unity
 Assets/Scenes/movie.unity
@@ -132,6 +132,7 @@ c9226cc948a3608034fff324fb22ec8d Assembly-CSharp.dll:.Menu
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.Analytics.Editor.dll:UnityEditor.Analytics.AnalyticsEventTrackerEditor
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
+61675af1408e0a2c45fc520eb668b10a Assembly-CSharp.dll:.Leaderboard
 cc2cac863f7afe33ed1f1d7d2f371e56 Assembly-CSharp.dll:.Boss
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -173,4 +174,3 @@ c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 9bdbcfbbfc2d1da7acba9cee89abd883 Assembly-CSharp.dll:.Enemy
 9b146ed3d35b7f7934560155f4ab609f Assembly-CSharp.dll:.Controls
-61675af1408e0a2c45fc520eb668b10a Assembly-CSharp.dll:.Leaderboard

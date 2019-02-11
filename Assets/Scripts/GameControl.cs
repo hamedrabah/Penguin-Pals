@@ -22,6 +22,8 @@ public class GameControl : MonoBehaviour
     private float scoreSpotX;
     private float scoreSpotY;
     private int highScore;
+    private float distanceFromCamera = 10f;
+    private  Vector3 centerPos;
 
     // Awake is called before the first frame update
     private void Awake()
@@ -33,6 +35,9 @@ public class GameControl : MonoBehaviour
             scoreText.enabled = false;
             gameOverText.enabled = false;
             gameOverText2.enabled = false;
+            centerPos = Camera.main.ViewportToWorldPoint(new 
+            Vector3(0.5f, 0.1f, distanceFromCamera));
+            scorePenguins.transform.position = centerPos;
         }
 
         else if (instance!=this){
@@ -58,7 +63,7 @@ public class GameControl : MonoBehaviour
         if (gameOver) return;
         score++;
         birdScored = true;
-        if (instance.score <6) {
+        if (instance.score <=5) {
             scorePenguins.sprite = penguinsSaved[score];
             scoreSpotX = scorePenguins.transform.position.x;
             scoreSpotY= scorePenguins.transform.position.y;
@@ -68,7 +73,7 @@ public class GameControl : MonoBehaviour
             scoreText.enabled = true;
             scorePenguins.sprite = genericPenguin;
             scoreText.text = instance.score.ToString();
-            scorePenguins.transform.position = new Vector3(scoreSpotX - 0.5f,-4.2f);
+            //scorePenguins.transform.position = new Vector3(scoreSpotX - 0.5f,-4.2f);
         }
         if (score > highScore) PlayerPrefs.SetInt("highScore", score);
 

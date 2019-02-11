@@ -7,9 +7,9 @@ public class ColumnPool : MonoBehaviour
     private GameObject[] columns;
     public int columnPoolSize = 5;
     public GameObject columnPrefab;
-    private Vector2 objectPoolPosition = new Vector2(-15f, -25f);
+    private Vector2 objectPoolPosition = new Vector2(-10f, -15f);
     private float timeSinceSpawn;
-    public float spawnRate = 4f;
+    public float spawnRate = 5f;
     public float colmin = -1f;
     public float colmax = 3.5f;
     private float spawnX = 10f;
@@ -40,7 +40,7 @@ public class ColumnPool : MonoBehaviour
             timeSinceSpawn = 0;
             float spawnY= Random.Range(colmin, colmax);
             columns[currentCol].transform.position = new Vector2(spawnX, spawnY);
-            if (isColumn && GameControl.instance.GetScore() > 5) HardMode();
+            if (isColumn && GameControl.instance.GetScore() > 1) HardMode();
             currentCol++;
             if (currentCol >= columnPoolSize) currentCol = 0;
         }
@@ -48,7 +48,7 @@ public class ColumnPool : MonoBehaviour
 
     void HardMode()
     {
-        bool Boolean = (Random.value > 0.02* GameControl.instance.GetScore());
+        bool Boolean = (Random.value > 0.4* GameControl.instance.GetScore());
         columns[currentCol].GetComponent<Rigidbody2D>().isKinematic = Boolean;
         //if true its easier, more false the moroe hard 
     }
